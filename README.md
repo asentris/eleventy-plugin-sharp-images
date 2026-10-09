@@ -34,16 +34,17 @@ This plugin is a continuation of the now-abandoned [eleventy-plugin-sharp](https
 
 1. Install the plugin:
 
-```bash
-npm install @codestitchofficial/eleventy-plugin-sharp-images
-```
+    - Install a specific version directly from the public GitHub repository:
+        - `npm install github:asentris/eleventy-plugin-sharp-images#v3.0.0`
+    - Alternatively, install the latest commit from main:
+        - `npm install github:asentris/eleventy-plugin-sharp-images#main`
 
 2. Configure Eleventy:
 
 ```javascript
 // eleventy.js
 
-const eleventyPluginSharpImages = require("@codestitchofficial/eleventy-plugin-sharp-images");
+const eleventyPluginSharpImages = require("@asentris/eleventy-plugin-sharp-images");
 
 module.exports = function (eleventyConfig) {
 
@@ -67,6 +68,29 @@ module.exports = function (eleventyConfig) {
 The plugin's only runtime dependency is `sharp`. Eleventy is provided by the site that installs this plugin.
 
 <a href="#configuration"></a>
+
+## Publishing
+
+This package is distributed directly through GitHub using Git tags. No npm registry publication is required. Updating the version field in `package.json` is optional, but recommended for consistency.
+
+- Commit and push your changes to main:
+
+  ```
+  git checkout main
+  git pull origin main
+  git merge dev main
+  git push origin main
+  ```
+
+- Create and push a version tag:
+
+  ```
+  git tag --sort=-creatordate | Select-Object -First 2
+  git tag -a v3.0.0 -m "Description."
+  git push --tags
+  ```
+
+For each new release, create and push a new Git tag (e.g., v1.2.1). Existing tags should remain unchanged. Consuming projects can update by installing the new tag.
 
 ## Configuration
 
