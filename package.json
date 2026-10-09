@@ -14,18 +14,10 @@
         "node": ">=20.9.0"
     },
     "directories": {
-        "lib": "lib",
-        "test": "test"
+        "lib": "lib"
     },
     "dependencies": {
         "sharp": "^0.35.5"
-    },
-    "devDependencies": {
-        "@11ty/eleventy": "^3.0.0"
-    },
-    "scripts": {
-        "start": "npx @11ty/eleventy --serve",
-        "build": "npx @11ty/eleventy"
     },
     "author": "CodeStitch",
     "license": "ISC",
