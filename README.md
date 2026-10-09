@@ -25,7 +25,7 @@ This plugin is a continuation of the now-abandoned [eleventy-plugin-sharp](https
 ## Features
 
 1. Full Sharp integration, allowing for cropping, resizing, compressing, manipulating, and changing file types within your Eleventy project
-2. Efficient caching mechanism to prevent regeneration of identical images within and between builds, both locally and when deployed to Netlify
+2. Efficient caching mechanism to prevent regeneration of identical images within and between builds. Processed files and the cache manifest live on disk and can be persisted between deploys
 3. Asynchronous processing - even when using non-asynchronous features (like Nunjucks Macros)
 
 <a href="#installation"></a>
@@ -64,13 +64,9 @@ module.exports = function (eleventyConfig) {
 > [!CAUTION]
 > `eleventy.js` only accepts one `module.exports`. Make sure you paste the plugin snippet above **inside** the current `module.exports`.
 
-3. For caching (Netlify use only), install Netlify's caching plugin:
+The plugin's only runtime dependency is `sharp`. Eleventy is provided by the site that installs this plugin.
 
-```bash
-npm install netlify-plugin-cache
-```
-
-4. Add caching configuration to `netlify.toml` in the root of your repository:
+To keep processed images and the `.cache` manifest between Netlify deploys, install `netlify-plugin-cache` in that site and add this to its `netlify.toml`:
 
 ```toml
 [[plugins]]
@@ -79,7 +75,7 @@ package = "netlify-plugin-cache"
   [plugins.inputs]
   paths = [
     "public/assets/images", # Processed images - adjust to match your outputDir
-    ".cache" # Remote Assets
+    ".cache" # Cache manifest
   ]
 ```
 
@@ -199,7 +195,7 @@ Simply, place this into your snippets file for the HTML language in VSCode. More
 
 To support environments where async features aren't allowed (like processing an image in a Nunjucks Macro), the shortcode doesn't directly generate the image. Instead, it creates a comment with a JSON configuration object. At the end of an Eleventy build, a Transform uses a regex to find all instances of these comments and process the images.
 
-The configuration is hashed, and the file is renamed to include this hash. If an image path or its transformations change, the hash/filename will change, invalidating the cache. This works with netlify-plugin-cache to prevent reprocessing between builds in a live environment.
+The configuration is hashed, and the file is renamed to include this hash. If an image path or its transformations change, the hash/filename will change, invalidating the cache. The manifest is written to `.cache/eleventy-plugin-sharp-images.json`. Persisting that directory and `outputDir` between deploys skips reprocessing.
 
 <a href="#special-thanks"></a>
 

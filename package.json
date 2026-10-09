@@ -1,6 +1,6 @@
 {
     "name": "@codestitchofficial/eleventy-plugin-sharp-images",
-    "version": "2.1.1",
+    "version": "3.0.0",
     "description": "An Eleventy plugin for image processing using Sharp",
     "main": "lib/eleventy-plugin-sharp-images.js",
     "keywords": [
@@ -11,17 +11,17 @@
         "images"
     ],
     "engines": {
-        "node": ">=14.0.0"
+        "node": ">=20.9.0"
     },
     "directories": {
         "lib": "lib",
         "test": "test"
     },
     "dependencies": {
-        "@11ty/eleventy": "^2.0.1",
-        "cross-env": "^7.0.3",
-        "netlify-plugin-cache": "^1.0.3",
-        "sharp": "^0.33.4"
+        "sharp": "^0.35.5"
+    },
+    "devDependencies": {
+        "@11ty/eleventy": "^3.0.0"
     },
     "scripts": {
         "start": "npx @11ty/eleventy --serve",
@@ -31,10 +31,10 @@
     "license": "ISC",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/CodeStitchOfficial/eleventy-plugin-sharp-images.git"
+        "url": "git+https://github.com/asentris/eleventy-plugin-sharp-images.git"
     },
     "bugs": {
-        "url": "https://github.com/CodeStitchOfficial/eleventy-plugin-sharp-images/issues"
+        "url": "https://github.com/asentris/eleventy-plugin-sharp-images/issues"
     },
-    "homepage": "https://github.com/CodeStitchOfficial/eleventy-plugin-sharp-images#readme"
+    "homepage": "https://github.com/asentris/eleventy-plugin-sharp-images#readme"
 }
