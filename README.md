@@ -66,19 +66,6 @@ module.exports = function (eleventyConfig) {
 
 The plugin's only runtime dependency is `sharp`. Eleventy is provided by the site that installs this plugin.
 
-To keep processed images and the `.cache` manifest between Netlify deploys, install `netlify-plugin-cache` in that site and add this to its `netlify.toml`:
-
-```toml
-[[plugins]]
-package = "netlify-plugin-cache"
-
-  [plugins.inputs]
-  paths = [
-    "public/assets/images", # Processed images - adjust to match your outputDir
-    ".cache" # Cache manifest
-  ]
-```
-
 <a href="#configuration"></a>
 
 ## Configuration
@@ -203,4 +190,3 @@ The configuration is hashed, and the file is renamed to include this hash. If an
 
 -   [luwes](https://github.com/luwes/) for building the original [eleventy-plugin-sharp](https://github.com/luwes/eleventy-plugin-sharp)
 -   [Multiline Comment](https://multiline.co/) for their article on [using Eleventy transforms to render asynchronous content inside Nunjucks macros](https://multiline.co/mment/2022/08/eleventy-transforms-nunjucks-macros/)
--   [Raymond Camden](https://www.raymondcamden.com/) for his guide on [using the Netlify Cache Plugin with Eleventy](https://www.raymondcamden.com/2022/06/26/testing-the-netlify-cache-plugin-with-eleventy)
